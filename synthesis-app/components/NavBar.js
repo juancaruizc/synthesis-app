@@ -1,7 +1,14 @@
+import Image from "next/image";
+import Link from "next/link";
+import styles from "../styles/NavBar.module.css";
+
 const NavBar = () => {
   return (
-    <nav>
-      <h1>sdjfljs</h1>
+    <nav className={styles.mainNav}>
+      <Image src="/synthesis-logo.svg" width={80} height={30} />
+      <Link href="/about">
+        <a className={styles.about}>About Me & Why Synthesis</a>
+      </Link>
     </nav>
   );
 };
