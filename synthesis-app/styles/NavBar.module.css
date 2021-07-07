@@ -1,0 +1,10 @@
+.mainNav {
+  background: #000000;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.about {
+  color: white;
+}
