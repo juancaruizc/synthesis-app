@@ -1,0 +1,80 @@
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.startMeetingBtn {
+  width: 128px;
+  height: 45px;
+  border-radius: 59px;
+  border: none;
+  background: black;
+  color: white;
+  font-size: 14px;
+  margin-left: 200px;
+}
+
+.startMeetingBtn:hover {
+  background: #bababa;
+  color: black;
+}
+
+.meetingDetails {
+  display: flex;
+  justify-content: space-around;
+  width: 300px;
+}
+
+.meetingTime {
+  width: 50%;
+  border-right: 1px solid black;
+  text-align: center;
+}
+
+.meetingDate {
+  width: 50%;
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+}
+
+.joinBtn {
+  width: 128px;
+  height: 45px;
+  border-radius: 59px;
+  border: none;
+  background: black;
+  color: white;
+  font-size: 14px;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.joinBtn:hover {
+  background: #bababa;
+  color: black;
+}
+
+.classes {
+  width: 600px;
+  height: 250px;
+  background: #ffffff;
+  box-shadow: 0px 30px 60px -40px rgba(31, 38, 23, 0.5);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.main {
+  margin-left: 150px;
+  margin-top: 50px;
+}
+
+.meetingTopic {
+  margin-left: 20px;
+}
