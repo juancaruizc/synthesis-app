@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import NavBar from "../components/NavBar";
 
@@ -33,7 +32,7 @@ export const getServerSideProps = async () => {
 //   };
 // };
 
-export default function Home({ meetings, newMeeting }) {
+export default function Home({ meetings }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [meetingDetails, setMeetingDetails] = useState({
     topic: "",

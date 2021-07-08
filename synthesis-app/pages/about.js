@@ -31,8 +31,8 @@ const About = () => {
           Ever since I was a junior in High School, I started questioning the
           things around what they were teaching us, why this? Why that? I came
           to the conclusion that the traditional education system simply just
-          sucks. I wouldn't say I was the best student with the best grades, in
-          fact, I was the guy the teacher just didn't like haha. It wasn't up
+          sucks. I wouldnt say I was the best student with the best grades, in
+          fact, I was the guy the teacher just didnt like haha. It wasnt up
           until when I was about to graduate where I really started to learn how
           to code! [1] I have always been obsessed with tech [2]. When the time
           rolled around, I decided to not really do what my peers or even
@@ -50,9 +50,9 @@ const About = () => {
           of this world excited. I always wonder how much better the world could
           be, how many more problems could be solved, if we get education just
           right. It is the fundamental change we have to make for the growth and
-          trajectory of the world to go from good to great! I've noticed some
+          trajectory of the world to go from good to great! Ive noticed some
           organizations start working on this, more towards higher education
-          (Like Lambda and others) but I've seen few work on younger people
+          (Like Lambda and others) but Ive seen few work on younger people
           (elementary-middle schoolers) I actually believe that we should start
           here. This will help these people grow up to be better problem solvers
           and independent thinkers once they reach the age of higher education.
@@ -63,9 +63,9 @@ const About = () => {
         <p className={styles.text}>
           [1] I always wonder why I never learned to code earlier, I suspect
           maybe it is because of the environment and town I lived in. (Nogales,
-          AZ) ~20k population. I don't think I ever even heard the world
-          "coding" growing up, it is just something that was (and still is)
-          unheard of in the area.
+          AZ) ~20k population. I dont think I ever even heard the word coding
+          growing up, it is just something that was (and still is) unheard of in
+          the area.
         </p>
 
         <p className={styles.text}>
