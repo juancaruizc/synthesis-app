@@ -8,7 +8,7 @@ import NavBar from "../components/NavBar";
 export const getServerSideProps = async () => {
   const res = await fetch("https://api.zoom.us/v2/users/me/meetings", {
     headers: {
-      Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6Ijc2Y2VtVC1FUWEtSDdHSm01SkdFVWciLCJleHAiOjE2Mjc4NDQ0MDAsImlhdCI6MTYyNTUzNjQ2MH0.nHpNYt8wRcAmPxHLVgDyNYVcnWOYkQLMQs1As7YNU9o`,
+      Authorization: `Bearer ${process.env.ZOOM_TOKEN}`,
     },
   });
   const data = await res.json();
