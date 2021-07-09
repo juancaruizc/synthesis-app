@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import NavBar from "../components/NavBar";
+// import { parse, stringify } from "flatted";
 
 export const getServerSideProps = async () => {
   const res = await fetch("https://api.zoom.us/v2/users/me/meetings", {
@@ -18,48 +19,48 @@ export const getServerSideProps = async () => {
   };
 };
 
-// export const getServerSideProps = async () => {
-//   const res = await fetch("https://api.zoom.us/v2/users/me/meetings", {
-//     headers: {
-//       Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6Ijc2Y2VtVC1FUWEtSDdHSm01SkdFVWciLCJleHAiOjE2Mjc4NDQ0MDAsImlhdCI6MTYyNTUzNjQ2MH0.nHpNYt8wRcAmPxHLVgDyNYVcnWOYkQLMQs1As7YNU9o`,
-//     },
-//   });
-//   const data = await res.json();
-//   return {
-//     props: {
-//       newMeeting: data,
-//     },
-//   };
-// };
-
 export default function Home({ meetings }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [meetingDetails, setMeetingDetails] = useState({
     topic: "",
-    start_time: "",
-    duration: "",
+    // start_time: "",
+    // duration: 0,
   });
 
   const handleChange = (e) => {
     setMeetingDetails({ ...meetingDetails, [e.target.name]: e.target.value });
     console.log(meetingDetails);
   };
+  // make a post request with next.js
+  // const postServerSideData = async (meetingDetails) => {
+  //   console.log(meetingDetails);
+  //   const res = await fetch("https://api.zoom.us/v2/users/me/meetings", {
+  //     method: "POST",
+  //     headers: {
+  //       Authorization: `Bearer ${process.env.ZOOM_TOKEN}`,
+  //     },
+  // "Content-type" : "application/json"
+  //     body: JSON.stringify(meetingDetails),
+  //   });
+  //   const newMeeting = await res.json();
+  //   return newMeeting;
+  // };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const createMeeting = async (event) => {
+    event.preventDefault();
 
     const res = await fetch("https://api.zoom.us/v2/users/me/meetings", {
-      body: JSON.stringify({
-        name: e.target.name.value,
-      }),
+      body: JSON.stringify(meetingDetails),
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6Ijc2Y2VtVC1FUWEtSDdHSm01SkdFVWciLCJleHAiOjE2Mjc4NDQ0MDAsImlhdCI6MTYyNTUzNjQ2MH0.nHpNYt8wRcAmPxHLVgDyNYVcnWOYkQLMQs1As7YNU9o`,
+        Authorization: `Bearer ${process.env.ZOOM_TOKEN}`,
       },
       method: "POST",
     });
+
     const result = await res.json();
     console.log(result);
+    // result.user => 'Ada Lovelace'
   };
 
   return (
@@ -111,7 +112,7 @@ export default function Home({ meetings }) {
         </div>
         {isModalOpen && (
           <div className={styles.modal}>
-            <form className={styles.formContainer} onSubmit={handleSubmit}>
+            <form className={styles.formContainer} onSubmit={createMeeting}>
               <h1 className={styles.formHeader}>Please Tell Us More...</h1>
 
               <label className={styles.inputLabel}>
