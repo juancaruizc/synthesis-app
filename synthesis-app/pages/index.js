@@ -18,26 +18,15 @@ export const getServerSideProps = async () => {
   };
 };
 
-// export const getServerSideProps = async () => {
-//   const res = await fetch("https://api.zoom.us/v2/users/me/meetings", {
-//     headers: {
-//       Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6Ijc2Y2VtVC1FUWEtSDdHSm01SkdFVWciLCJleHAiOjE2Mjc4NDQ0MDAsImlhdCI6MTYyNTUzNjQ2MH0.nHpNYt8wRcAmPxHLVgDyNYVcnWOYkQLMQs1As7YNU9o`,
-//     },
-//   });
-//   const data = await res.json();
-//   return {
-//     props: {
-//       newMeeting: data,
-//     },
-//   };
-// };
+// Since I am using getServerSideProps the other option I could've take would be to use getStaticProps()
+// use unstable_revalidate: for example 1 second that way we have the smooth experience of no page refresh
+// and automatic new meeting added to the meeting list instead of having to refresh
 
 export default function Home({ meetings }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [meetingDetails, setMeetingDetails] = useState({
     topic: "",
-    start_time: "",
-    duration: "",
+    duration: 40,
   });
 
   const handleChange = (e) => {
@@ -45,23 +34,22 @@ export default function Home({ meetings }) {
     console.log(meetingDetails);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const res = await fetch("https://api.zoom.us/v2/users/me/meetings", {
-      body: JSON.stringify({
-        name: e.target.name.value,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6Ijc2Y2VtVC1FUWEtSDdHSm01SkdFVWciLCJleHAiOjE2Mjc4NDQ0MDAsImlhdCI6MTYyNTUzNjQ2MH0.nHpNYt8wRcAmPxHLVgDyNYVcnWOYkQLMQs1As7YNU9o`,
+  const handleSubmit = async () => {
+    if (!meetingDetails) return;
+    const response = await fetch(
+      "/api",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ meetingDetails }),
       },
-      method: "POST",
-    });
-    const result = await res.json();
-    console.log(result);
+      alert("Success!!")
+    );
+    const result = await response.json();
+    return result;
   };
-
   return (
     <>
       <Head>
@@ -115,43 +103,18 @@ export default function Home({ meetings }) {
               <h1 className={styles.formHeader}>Please Tell Us More...</h1>
 
               <label className={styles.inputLabel}>
-                Topics
+                Topic
                 <input
                   className={styles.formInput}
                   type="text"
                   placeholder="Ex: Build a tic tac toe game!"
                   onChange={handleChange}
-                  // value={meetingDetails.topic}
+                  value={meetingDetails.topic}
                   name="topic"
                   autoComplete="topic"
                 />
               </label>
 
-              <label className={styles.inputLabel}>
-                Start Time
-                <input
-                  className={styles.formInput}
-                  type="text"
-                  placeholder="Ex: 2021-07-0"
-                  onChange={handleChange}
-                  // value={meetingDetails.start_time}
-                  name="start_time"
-                  autoComplete="start_time"
-                />
-              </label>
-
-              <label className={styles.inputLabel}>
-                Duration (minutes)
-                <input
-                  className={styles.formInput}
-                  type="number"
-                  placeholder="Ex: 45"
-                  onChange={handleChange}
-                  // value={meetingDetails.duration}
-                  name="duration"
-                  autoComplete="duration"
-                />
-              </label>
               <div className={styles.createMeetingBtnContainer}>
                 <button className={styles.createMeetingBtn}>Create</button>
               </div>
@@ -170,8 +133,3 @@ export default function Home({ meetings }) {
     </>
   );
 }
-
-// could've implemented e.preventDefault for more smooth experience (no page refresh)
-// the tradeoff is that the new meeting wont automatically render in the meeting list when new meeting is created since I am using getServerSideProps()
-// the other option I could've take would be to use getStaticProps(), implement e.preventDefault and
-// use unstable_revalidate: for example 1 second that way we have the smooth experience of no page refresh and automatic new meeting added to the meeting list
