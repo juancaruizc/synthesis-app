@@ -45,7 +45,7 @@ export default function Home({ meetings }) {
         },
         body: JSON.stringify({ meetingDetails }),
       },
-      alert("Success!!")
+      alert("Success!! Refresh to see your new meeting")
     );
     const result = await response.json();
     return result;
