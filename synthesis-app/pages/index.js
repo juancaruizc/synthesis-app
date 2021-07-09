@@ -46,6 +46,8 @@ export default function Home({ meetings }) {
   //   return newMeeting;
   // };
 
+  const lambda = "school";
+
   const createMeeting = async (event) => {
     event.preventDefault();
 
