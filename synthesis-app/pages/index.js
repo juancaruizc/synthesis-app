@@ -18,7 +18,7 @@ export const getServerSideProps = async () => {
   };
 };
 
-// Since I am using getServerSideProps the other option I could've take would be to use getStaticProps()
+// Since I am using getServerSideProps() the other option I could've take would be to use getStaticProps()
 // use unstable_revalidate: for example 1 second that way we have the smooth experience of no page refresh
 // and automatic new meeting added to the meeting list instead of having to refresh
 
@@ -31,7 +31,6 @@ export default function Home({ meetings }) {
 
   const handleChange = (e) => {
     setMeetingDetails({ ...meetingDetails, [e.target.name]: e.target.value });
-    console.log(meetingDetails);
   };
 
   const handleSubmit = async () => {
