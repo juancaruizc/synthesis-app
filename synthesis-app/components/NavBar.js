@@ -9,7 +9,7 @@ const NavBar = () => {
         <Image src="/synthesis-logo.svg" width={80} height={30} />
       </Link>
       <Link href="/about">
-        <a className={styles.about}>About Me & Why Synthesis</a>
+        <a className={styles.about}>Why Synthesis</a>
       </Link>
     </nav>
   );
